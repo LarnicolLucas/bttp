@@ -1,25 +1,32 @@
 "use client"
 
 import {useState} from "react"
-import {params, dataProdutivite} from "./init"
+import {params} from "./init"
+
+import Production from "./production/production";
+import { createMachines } from "./utils/createMachines";
 
 export default function Home() {
 
 
   const [tresor, setTresor] = useState(params.tresor);
+  const [machines, setMachines] = useState(params.capital_constant.machines);
+  const [salaries, setSalaries] = useState(params.salaries);
 
-  const calculProductivite = (data: number[]) => (nombre: number, niveau: number)=> nombre * data[niveau];
+  console.log(machines)
 
-  const calculProductiviteMachine = calculProductivite(dataProdutivite.machines);
-  const calculProductiviteSalaries = calculProductivite(dataProdutivite.salaries);
-
-  
-
+  const calculProductivite = (array : {productivite: number}[])=> array.reduce((acc, cur)=> acc + cur.productivite ,0 );
 
   return (
     <div className="p-2">
 
-      <div key="trésor" className="p-2">
+      <div key="controls" className="p-2"> 
+
+        <button onClick={()=> setMachines(machines.concat(createMachines(1)))}>Créer une machine de niveau 1</button>
+
+      </div>
+
+      <div key="trésor" className="p-2"> 
 
         {tresor}
 
@@ -29,13 +36,8 @@ export default function Home() {
 
         <div key="production" className="p-2">
 
-          {tresor}
-
-          <div key="production" className="p-2">
-
-            {tresor}
-
-          </div>
+          <Production name="machines" productivite={calculProductivite(machines)} label="machines" />
+          <Production name="salaries" productivite={calculProductivite(salaries)} label="salaries" />
 
         </div>
 
