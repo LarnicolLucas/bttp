@@ -13,8 +13,6 @@ export default function Home() {
   const [machines, setMachines] = useState(params.capital_constant.machines);
   const [salaries, setSalaries] = useState(params.salaries);
 
-  console.log(machines)
-
   const calculProductivite = (array : {productivite: number}[])=> array.reduce((acc, cur)=> acc + cur.productivite ,0 );
 
   return (
