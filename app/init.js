@@ -1,7 +1,7 @@
-import { createMachines } from "./utils/createMachines";
+import { createMachines } from "./utils/createProd";
 
 export const params = {
-    tresor: 1000,
+    tresor: 10000,
     salaries: [
         {
             niveau: 0,
