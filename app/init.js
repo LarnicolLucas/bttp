@@ -2,6 +2,7 @@ import { createMachines } from "./utils/createProd";
 
 export const params = {
     tresor: 10000,
+    prix_de_vente: 50,
     salaries: [
         {
             niveau: 0,

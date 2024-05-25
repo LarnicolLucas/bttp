@@ -15,6 +15,11 @@ export default function Home() {
 
 
   const [tresor, setTresor] = useState(params.tresor);
+
+  //Vente
+  const [prix_de_vente, setPrix_de_vente] = useState(params.prix_de_vente);
+  const [nombre_distributeur, setNombre_istributeur] = useState(5);
+
   const [machines, setMachines] = useState(params.capital_constant.machines);
   const [salaries, setSalaries] = useState(params.salaries);
 
@@ -30,12 +35,9 @@ export default function Home() {
 
   useEffect(()=> {
 
-    setTresor(tresor - totalCout(machines) - totalCout(salaries))
+    setTresor(tresor - totalCout(machines) - totalCout(salaries) + (prix_de_vente*nombre_distributeur))
 
-  }, [clock])
-
-
-  //const couts = totalCout(machines) + totalCout(salaries);
+  }, [clock]);
 
   return (
     <div className="p-2">
@@ -44,9 +46,16 @@ export default function Home() {
 
       <div key="trésor" className="p-2"> 
 
-        {tresor}
+        {tresor} euros
 
       </div>
+
+      <div key="prix_de_vente" className="p-2"> 
+
+        {prix_de_vente} euros
+
+      </div>
+
 
       <div key="usine" className="p-2">
 
