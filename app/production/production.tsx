@@ -6,7 +6,7 @@ export default function Production(props: {
 
 }) {
 
-  return (<div key={props.name} className="p-2">
+  return (<div key={props.name}>
 
     Production {props.label} : {props.productivite}/jour
 

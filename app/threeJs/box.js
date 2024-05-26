@@ -19,7 +19,7 @@ export default function Box(props) {
         onPointerOver={(event) => setHover(true)}
         onPointerOut={(event) => setHover(false)}>
         <boxGeometry args={props.boxGeometrie} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+        <meshStandardMaterial transparent color={hovered ? '#653EFF' : '#FFC700'} />
       </mesh>
     )
   }

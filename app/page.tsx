@@ -49,9 +49,9 @@ export default function Home() {
   }, [clock, machines, salaries]);
 
   return (
-    <div className="p-2">
+    <div className="relative h-screen">
 
-      <header className="absolute">
+      <header className="relative flex">
 
         <Ajout label="Créer une machine de niveau 1" action={()=> createMachineNiveau1()}/>
 
@@ -70,7 +70,7 @@ export default function Home() {
 
         <div key="usine" className="p-2">
 
-          <div key="production" className="p-2">
+          <div key="production" className="flex">
 
             <Production name="machines" productivite={calculProductivite(machines)} label="machines" />
             <Production name="salaries" productivite={calculProductivite(salaries)} label="salaries" />
@@ -81,7 +81,7 @@ export default function Home() {
 
       </header>
 
-      <main className="h-screen">
+      <main className="h-full">
         <Canva venteEvent={venteEvent1}/>
       </main>
 
