@@ -1,5 +1,7 @@
 "use client"
 
+import {Button} from "@nextui-org/button";
+
 export default function Ajout(props: {
   label: string, 
   action: ()=> void
@@ -10,7 +12,7 @@ export default function Ajout(props: {
 
     <div key="controls" className="p-2"> 
 
-      <button onClick={props.action}>{props.label}</button>
+      <Button onPress={props.action} color="primary">{props.label}</Button>
 
       </div>
   );

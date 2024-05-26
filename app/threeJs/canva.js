@@ -28,7 +28,6 @@ export default function Canva(props) {
 
   return <Canvas 
   orthographic
-  pixelRatio={2}
     camera={{
       position: [20, 20, 20], 
       zoom: 15

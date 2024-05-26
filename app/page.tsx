@@ -8,6 +8,7 @@ import {params} from "./init"
 //Components
 import Production from "./production/production";
 import Ajout from "./controls/ajout";
+import SliderSalaire from "./controls/slider";
 import Canva from "./threeJs/canva";
 //Utils
 import { createMoyenProduction, createMachines } from "./utils/createProd";
@@ -55,18 +56,13 @@ export default function Home() {
 
         <Ajout label="Créer une machine de niveau 1" action={()=> createMachineNiveau1()}/>
 
+        <SliderSalaire state={[prix_de_vente, setPrix_de_vente]} />
+
         <div key="trésor" className="p-2"> 
 
           {tresor} euros
 
         </div>
-
-        <div key="prix_de_vente" className="p-2"> 
-
-          {prix_de_vente} euros
-
-        </div>
-
 
         <div key="usine" className="p-2">
 
