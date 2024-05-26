@@ -44,9 +44,9 @@ export default function Home() {
 
   useEffect(()=> {
 
-    setTresor(tresor - totalCout(machines) - totalCout(salaries))
+    setTresor(tresor => tresor - totalCout(machines) - totalCout(salaries))
 
-  }, [clock]);
+  }, [clock, machines, salaries]);
 
   return (
     <div className="p-2">

@@ -10,8 +10,8 @@ export default function Canva(props) {
 
   const togglePosition = (fnArrive)=> (state)=> (pos, min, max) => {
     
-    if(parseInt(pos) === min) {state[1](true); return true}
-    if(parseInt(pos) === max) {state[1](false); fnArrive(); return false}
+    if(parseInt(pos) >= min) {state[1](true); return true}
+    if(parseInt(pos) <= max) {state[1](false); fnArrive(); return false}
     return state[0]
   };
 
@@ -41,10 +41,12 @@ export default function Canva(props) {
     <Box 
       position={[-600, 0, 0]}
       boxGeometrie={params.size_moyen_de_production}
+      frame={(meshRef)=> ( state, delta)=> null}
     />
     <Box 
       position={[0, 0, 0]}
       boxGeometrie={params.size_moyen_de_production}
+      frame={(meshRef)=> ( state, delta)=> null}
     />
 
   </Canvas>
