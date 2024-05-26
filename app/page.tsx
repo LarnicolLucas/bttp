@@ -8,6 +8,7 @@ import {params} from "./init"
 //Components
 import Production from "./production/production";
 import Ajout from "./controls/ajout";
+import Canva from "./threeJs/canva";
 //Utils
 import { createMoyenProduction, createMachines } from "./utils/createProd";
 
@@ -20,6 +21,7 @@ export default function Home() {
   const [prix_de_vente, setPrix_de_vente] = useState(params.prix_de_vente);
   const [nombre_distributeur, setNombre_istributeur] = useState(5);
 
+  //Moyens de Productions
   const [machines, setMachines] = useState(params.capital_constant.machines);
   const [salaries, setSalaries] = useState(params.salaries);
 
@@ -30,43 +32,58 @@ export default function Home() {
   const createProdMachine = createMoyenProduction([machines, setMachines]);
   const createMachineNiveau1 = createProdMachine(createMachines(1));
 
+  //Opération de vente
+  const venteEvent = (prix_de_vente: number, stateTresor: [number, (tresor: number)=> void]) => 
+    ()=> stateTresor[1](stateTresor[0] + prix_de_vente)
+  ;
+
+  const venteEvent1= venteEvent(prix_de_vente, [tresor, setTresor]);
+
   //Clock
   const clock = useClock(2);
 
   useEffect(()=> {
 
-    setTresor(tresor - totalCout(machines) - totalCout(salaries) + (prix_de_vente*nombre_distributeur))
+    setTresor(tresor - totalCout(machines) - totalCout(salaries))
 
   }, [clock]);
 
   return (
     <div className="p-2">
 
-      <Ajout label="Créer une machine de niveau 1" action={()=> createMachineNiveau1()}/>
+      <header className="absolute">
 
-      <div key="trésor" className="p-2"> 
+        <Ajout label="Créer une machine de niveau 1" action={()=> createMachineNiveau1()}/>
 
-        {tresor} euros
+        <div key="trésor" className="p-2"> 
 
-      </div>
-
-      <div key="prix_de_vente" className="p-2"> 
-
-        {prix_de_vente} euros
-
-      </div>
-
-
-      <div key="usine" className="p-2">
-
-        <div key="production" className="p-2">
-
-          <Production name="machines" productivite={calculProductivite(machines)} label="machines" />
-          <Production name="salaries" productivite={calculProductivite(salaries)} label="salaries" />
+          {tresor} euros
 
         </div>
 
-      </div>
+        <div key="prix_de_vente" className="p-2"> 
+
+          {prix_de_vente} euros
+
+        </div>
+
+
+        <div key="usine" className="p-2">
+
+          <div key="production" className="p-2">
+
+            <Production name="machines" productivite={calculProductivite(machines)} label="machines" />
+            <Production name="salaries" productivite={calculProductivite(salaries)} label="salaries" />
+
+          </div>
+
+        </div>
+
+      </header>
+
+      <main className="h-screen">
+        <Canva venteEvent={venteEvent1}/>
+      </main>
 
     </div>
   );
